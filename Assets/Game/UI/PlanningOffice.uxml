@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+  <Style src="PlanningOffice.uss" />
+  <ui:VisualElement name="planning-office" class="office">
+    <ui:Label text="БЮРО ГОСУДАРСТВЕННОГО ПЛАНИРОВАНИЯ" class="eyebrow" />
+    <ui:Label text="ПЯТИЛЕТНИЙ ПЛАН" class="title" />
+    <ui:VisualElement class="divider" />
+    <ui:Label name="bootstrap-status" text="Среда разработки готова" class="status" />
+    <ui:Label text="Техническая стартовая сцена. Игровая симуляция ещё не реализована." class="description" />
+  </ui:VisualElement>
+</ui:UXML>

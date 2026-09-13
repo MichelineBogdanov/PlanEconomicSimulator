@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="940" viewBox="0 0 1440 940" role="img" aria-labelledby="title description">
+  <title id="title">Плановое бюро — концепция интерфейса</title>
+  <desc id="description">Редактируемый макет: карта страны, паспорт производства и сводная таблица пятилетки. Все значения иллюстративные.</desc>
+  <defs>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M 32 0 L 0 0 0 32" fill="none" stroke="#888470" stroke-width=".4"/>
+    </pattern>
+    <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse">
+      <path d="M0 8L8 0" stroke="#888470" stroke-width=".6"/>
+    </pattern>
+    <style>
+      text { font-family: Arial, sans-serif; fill: #282A27; }
+      .small { font-size: 14px; }
+      .body { font-size: 18px; }
+      .label { font-size: 14px; fill: #59594E; letter-spacing: 1px; }
+      .section { font-size: 22px; font-weight: bold; }
+      .red { fill: #8F302B; }
+      .muted { fill: #59594E; }
+      .line { stroke: #888470; stroke-width: 1; }
+    </style>
+  </defs>
+  <rect width="1440" height="940" fill="#E9DFC7"/>
+  <rect width="1440" height="8" fill="#8F302B"/>
+  <text x="40" y="49" class="label">БЮРО ГОСУДАРСТВЕННОГО ПЛАНИРОВАНИЯ</text>
+  <text x="40" y="100" font-size="42" font-weight="bold">ПЯТИЛЕТНИЙ ПЛАН</text>
+  <text x="1060" y="47" class="label">ФОРМА П–01 / ПРОЕКТ</text>
+  <text x="1060" y="81" class="section">1981 — 1985</text>
+  <text x="1060" y="106" class="small muted">Составление · время остановлено</text>
+  <path d="M40 128H1400" stroke="#282A27" stroke-width="2"/>
+  <text x="40" y="162" class="body red" font-weight="bold">КАРТА СТРАНЫ</text>
+  <text x="247" y="162" class="body">ПЛАН И РЕЗЕРВЫ</text>
+  <text x="478" y="162" class="body">ВАРИАНТЫ</text>
+  <text x="652" y="162" class="body">ОТЧЁТЫ</text>
+  <path d="M40 178H202" stroke="#8F302B" stroke-width="4"/>
+  <rect x="40" y="202" width="888" height="438" fill="#D7D7BC" stroke="#888470"/>
+  <rect x="40" y="202" width="888" height="438" fill="url(#grid)"/>
+  <text x="64" y="235" class="label">СХЕМА ПРОИЗВОДСТВА И СНАБЖЕНИЯ</text>
+  <path d="M150 370L218 283L377 271L477 304L612 280L786 341L826 443L739 559L582 583L458 537L314 585L201 510Z" fill="#E9DFC7" stroke="#59594E" stroke-width="2"/>
+  <path d="M150 370L320 370L377 271M320 370L430 465L314 585M430 465L612 280M430 465L582 583M430 465L739 559" fill="none" stroke="#888470"/>
+  <path d="M182 394L218 307L295 294L310 355L248 405Z" fill="url(#hatch)"/>
+  <path d="M675 326L768 353L780 412L695 401Z" fill="url(#hatch)"/>
+  <path d="M300 401L498 460" stroke="#8F302B" stroke-width="4"/>
+  <path d="M498 460L684 372" stroke="#59594E" stroke-width="3" stroke-dasharray="8 6"/>
+  <path d="M488 450L498 460L485 463" fill="none" stroke="#8F302B" stroke-width="3"/>
+  <circle cx="300" cy="401" r="11" fill="#282A27" stroke="#F4ECD9" stroke-width="4"/>
+  <circle cx="498" cy="460" r="15" fill="#F4ECD9" stroke="#8F302B" stroke-width="4"/>
+  <circle cx="498" cy="460" r="5" fill="#8F302B"/>
+  <circle cx="684" cy="372" r="11" fill="#282A27" stroke="#F4ECD9" stroke-width="4"/>
+  <text x="250" y="441" class="body" font-weight="bold">Полевск</text>
+  <text x="250" y="464" class="small muted">Зерно · продовольствие</text>
+  <text x="448" y="505" class="body red" font-weight="bold">Заречный</text>
+  <text x="448" y="528" class="small muted">Ткань · одежда</text>
+  <text x="635" y="333" class="body" font-weight="bold">Рудный</text>
+  <text x="626" y="427" class="small muted">Металл · оборудование</text>
+  <rect x="351" y="381" width="155" height="31" fill="#F4ECD9"/>
+  <text x="365" y="403" class="small red">Продовольствие →</text>
+  <text x="65" y="616" class="small muted">— Действующий маршрут    · · · Планируемая поставка</text>
+  <rect x="952" y="202" width="448" height="438" fill="#F4ECD9" stroke="#888470"/>
+  <rect x="952" y="202" width="6" height="438" fill="#8F302B"/>
+  <text x="980" y="236" class="label">ПАСПОРТ ПРОИЗВОДСТВА № 014</text>
+  <text x="980" y="274" class="section">Швейная фабрика</text>
+  <text x="980" y="301" class="body muted">Заречный · лёгкая промышленность</text>
+  <path d="M981 374V346L1020 328V346L1060 328V374Z M1071 374V318H1083V374" fill="#59594E"/>
+  <path d="M991 356H1003M1014 356H1026M1037 356H1049" stroke="#F4ECD9" stroke-width="7"/>
+  <text x="1120" y="345" class="small muted">Сырьё → обработка → товар</text>
+  <text x="1120" y="374" class="body">Ткань + энергия → одежда</text>
+  <path d="M980 396H1372" class="line"/>
+  <text x="980" y="429" class="body">Мощность / месяц</text>
+  <text x="1372" y="429" text-anchor="end" class="body" font-weight="bold">12 000 шт.</text>
+  <text x="980" y="464" class="body">Задание / месяц</text>
+  <text x="1372" y="464" text-anchor="end" class="body" font-weight="bold">10 500 шт.</text>
+  <text x="980" y="499" class="body">Прогноз выпуска</text>
+  <text x="1372" y="499" text-anchor="end" class="body red" font-weight="bold">9 800 шт.</text>
+  <rect x="980" y="520" width="392" height="54" fill="#E9DFC7"/>
+  <text x="994" y="544" class="small red" font-weight="bold">! Не хватает ткани: 700 комплектов</text>
+  <text x="994" y="563" class="small muted">Причина: ограничение входящего маршрута</text>
+  <text x="980" y="613" class="body red" font-weight="bold">Изменить задание и снабжение →</text>
+  <text x="40" y="687" class="section">Баланс первого года</text>
+  <text x="1399" y="686" text-anchor="end" class="small muted">Все города · прогноз до утверждения</text>
+  <rect x="40" y="706" width="1360" height="131" fill="#F4ECD9"/>
+  <rect x="40" y="706" width="1360" height="39" fill="#D7D7BC"/>
+  <text x="59" y="732" class="small" font-weight="bold">ТОВАР</text>
+  <text x="452" y="732" class="small" font-weight="bold">ПОТРЕБНОСТЬ</text>
+  <text x="696" y="732" class="small" font-weight="bold">ПРОГНОЗ ПОТРЕБЛЕНИЯ</text>
+  <text x="1009" y="732" class="small" font-weight="bold">ОБЕСПЕЧЕНИЕ</text>
+  <text x="1230" y="732" class="small" font-weight="bold">ЗАПАС / ЦЕЛЬ</text>
+  <text x="59" y="779" class="body">Продовольствие</text>
+  <text x="452" y="779" class="body">18 000 т</text>
+  <text x="696" y="779" class="body">18 000 т</text>
+  <text x="1009" y="779" class="body" style="fill:#3E624B">✓ 100%</text>
+  <text x="1230" y="779" class="body">3 / 3 мес.</text>
+  <path d="M59 793H1380" class="line"/>
+  <text x="59" y="823" class="body">Одежда</text>
+  <text x="452" y="823" class="body">126 000 шт.</text>
+  <text x="696" y="823" class="body">117 600 шт.</text>
+  <text x="1009" y="823" class="body red">! 93,3%</text>
+  <text x="1230" y="823" class="body">0 / 2 мес.</text>
+  <text x="40" y="884" class="small muted">МАКЕТ НАПРАВЛЕНИЯ · ЗНАЧЕНИЯ ИЛЛЮСТРАТИВНЫЕ · ШРИФТЫ ВРЕМЕННЫЕ</text>
+  <rect x="1100" y="859" width="300" height="48" fill="#8F302B"/>
+  <text x="1250" y="890" text-anchor="middle" class="body" style="fill:#F4ECD9" font-weight="bold">Проверить проект плана →</text>
+</svg>

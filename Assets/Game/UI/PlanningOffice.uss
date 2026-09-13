@@ -1,0 +1,13 @@
+.office {
+  flex-grow: 1;
+  padding-left: 48px;
+  padding-right: 48px;
+  padding-top: 48px;
+  background-color: #E9DFC7;
+  color: #282A27;
+}
+.eyebrow { font-size: 18px; color: #59594E; margin-bottom: 24px; }
+.title { font-size: 36px; -unity-font-style: bold; color: #8F302B; }
+.divider { height: 3px; background-color: #8F302B; margin-top: 24px; margin-bottom: 32px; }
+.status { font-size: 24px; margin-bottom: 16px; }
+.description { font-size: 18px; white-space: normal; }

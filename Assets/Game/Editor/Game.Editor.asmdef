@@ -1,0 +1,5 @@
+{
+  "name": "Game.Editor",
+  "rootNamespace": "PlanEconomicSimulator.Editor",
+  "includePlatforms": ["Editor"]
+}

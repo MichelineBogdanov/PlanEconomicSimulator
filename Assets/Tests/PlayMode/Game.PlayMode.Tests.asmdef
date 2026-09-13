@@ -1,0 +1,4 @@
+{
+  "name": "Game.PlayMode.Tests",
+  "optionalUnityReferences": ["TestAssemblies"]
+}
