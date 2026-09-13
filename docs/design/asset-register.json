@@ -1,0 +1,8 @@
+{
+  "schemaVersion": 1,
+  "assets": [],
+  "requiredFields": [
+    "id", "sourcePath", "runtimePath", "author", "sourceUrl",
+    "license", "licensePath", "modifications", "aiGenerated", "status"
+  ]
+}

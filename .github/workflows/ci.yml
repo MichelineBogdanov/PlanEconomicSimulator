@@ -1,0 +1,125 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  repository:
+    name: Repository checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+      - shell: pwsh
+        run: ./scripts/Test-Repository.ps1
+
+  tests:
+    name: Unity ${{ matrix.mode }}
+    needs: repository
+    if: >-
+      github.actor != 'dependabot[bot]' &&
+      (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 35
+    strategy:
+      fail-fast: false
+      matrix:
+        mode: [EditMode, PlayMode]
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - name: Check CI license configuration
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        shell: bash
+        run: |
+          if [[ -z "$UNITY_LICENSE" || -z "$UNITY_EMAIL" || -z "$UNITY_PASSWORD" ]]; then
+            echo '::error::Configure Unity CI secrets as described in docs/DEVELOPMENT.md. No tests were run.'
+            exit 1
+          fi
+      - name: Run Unity tests
+        uses: game-ci/unity-test-runner@32e57712352b500e17974b245a6dce9e11a73213 # v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          projectPath: .
+          unityVersion: auto
+          testMode: ${{ matrix.mode }}
+          artifactsPath: TestResults
+          coverageEnabled: false
+      - name: Verify nonempty passing test results
+        shell: pwsh
+        run: ./scripts/Test-Results.ps1 -Path TestResults
+      - name: Save results and logs
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: tests-${{ matrix.mode }}-${{ github.sha }}
+          path: TestResults/
+          if-no-files-found: warn
+          retention-days: 14
+
+  gate:
+    name: CI gate
+    if: always()
+    needs: [repository, tests]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - name: Require completed checks
+        env:
+          REPOSITORY_RESULT: ${{ needs.repository.result }}
+          TEST_RESULT: ${{ needs.tests.result }}
+        run: |
+          if [[ "$REPOSITORY_RESULT" != success || "$TEST_RESULT" != success ]]; then
+            echo '::error::Repository checks and both Unity test modes must pass. Skipped tests do not satisfy this gate.'
+            exit 1
+          fi
+
+  windows:
+    name: Windows build
+    needs: gate
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          lfs: true
+          persist-credentials: false
+      - uses: game-ci/unity-builder@4423ee75828dff56037d1d1cfdac6b68e3a6ba00 # v4
+        env:
+          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
+        with:
+          unityVersion: auto
+          targetPlatform: StandaloneWindows64
+          buildMethod: PlanEconomicSimulator.Editor.ProjectBuild.BuildWindows
+          versioning: None
+          dockerShmSize: 2g
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: windows-${{ github.sha }}
+          path: Builds/Windows/
+          if-no-files-found: error
+          retention-days: 14
